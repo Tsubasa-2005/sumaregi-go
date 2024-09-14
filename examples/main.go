@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/Tsubasa-2005/sumaregi-go"
 	"github.com/go-resty/resty/v2"
 )
 
@@ -15,9 +16,9 @@ type Store struct {
 }
 
 func main() {
-	LoadEnv()
+	sumaregi.LoadEnv()
 
-	accessToken, err := GetAccessToken()
+	accessToken, err := sumaregi.GetAccessToken()
 	if err != nil {
 		log.Fatalf("Failed to get access token: %v", err)
 	}
