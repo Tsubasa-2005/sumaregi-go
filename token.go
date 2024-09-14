@@ -4,14 +4,13 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
-	"log"
 	"os"
+	"sync"
+	"time"
 
 	"github.com/go-resty/resty/v2"
-	"github.com/joho/godotenv"
 )
 
-// AccessTokenResponse represents the response from the API for the access token.
 type AccessTokenResponse struct {
 	Scope       string `json:"scope"`
 	TokenType   string `json:"token_type"`
@@ -19,22 +18,19 @@ type AccessTokenResponse struct {
 	AccessToken string `json:"access_token"`
 }
 
-// LoadEnv loads environment variables from .env file.
-func LoadEnv() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatalf("Error loading .env file")
-	}
-}
+var (
+	token          string
+	tokenExpiresAt time.Time
+	mu             sync.Mutex
+)
 
-// GetAccessToken fetches the access token from the API.
-func GetAccessToken() (*AccessTokenResponse, error) {
+// fetchNewAccessToken fetches a new access token from the API.
+func fetchNewAccessToken() (*AccessTokenResponse, error) {
 	clientID := os.Getenv("SMAREGI_CLIENT_ID")
 	clientSecret := os.Getenv("SMAREGI_CLIENT_SECRET")
 	smaregiIDPHost := os.Getenv("SMAREGI_IDP_HOST")
 	smaregiSandboxContractID := os.Getenv("SMAREGI_SANDBOX_CONTRACT_ID")
 
-	// Construct the URL with the contract ID
 	url := fmt.Sprintf("%s/app/%s/token", smaregiIDPHost, smaregiSandboxContractID)
 	auth := base64.StdEncoding.EncodeToString([]byte(fmt.Sprintf("%s:%s", clientID, clientSecret)))
 
@@ -53,6 +49,8 @@ func GetAccessToken() (*AccessTokenResponse, error) {
 		return nil, fmt.Errorf("error making request: %w", err)
 	}
 
+	fmt.Println("Response Body:", string(resp.Body()))
+
 	var accessTokenResult AccessTokenResponse
 	err = json.Unmarshal(resp.Body(), &accessTokenResult)
 	if err != nil {
@@ -60,4 +58,24 @@ func GetAccessToken() (*AccessTokenResponse, error) {
 	}
 
 	return &accessTokenResult, nil
+}
+
+// GetAccessToken returns a valid access token, either from cache or by fetching a new one.
+func GetAccessToken() (string, error) {
+	mu.Lock()
+	defer mu.Unlock()
+
+	newToken, err := fetchNewAccessToken()
+	if err != nil {
+		return "", err
+	}
+
+	token = newToken.AccessToken
+
+	err = SaveToEnv("ACCESS_TOKEN", token)
+	if err != nil {
+		return "", fmt.Errorf("error saving token to .env file: %w", err)
+	}
+
+	return token, nil
 }
