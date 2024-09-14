@@ -2,19 +2,19 @@ package sumaregi
 
 // sumaregi scopes
 const (
-	// product
-	ProductRead  = "pos.product:read"
-	ProductWrite = "pos.product:write"
-	// customer
-	CustomerRead  = "pos.customer:read"
-	CustomerWrite = "pos.customer:write"
+	// products
+	ProductsRead  = "pos.products:read"
+	ProductsWrite = "pos.products:write"
+	// customers
+	CustomersRead  = "pos.customers:read"
+	CustomersWrite = "pos.customers:write"
 	// stock
 	StockRead   = "pos.stock:read"
 	StockWrite  = "pos.stock:write"
 	StockChange = "pos.stock-changes:read"
-	// transaction
-	TransactionRead  = "pos.transaction:read"
-	TransactionWrite = "pos.transaction:write"
+	// transactions
+	TransactionsRead  = "pos.transactions:read"
+	TransactionsWrite = "pos.transactions:write"
 	// suppliers
 	SuppliersRead  = "pos.suppliers:read"
 	SuppliersWrite = "pos.suppliers:write"
