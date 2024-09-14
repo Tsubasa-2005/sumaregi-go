@@ -41,7 +41,7 @@ func fetchNewAccessToken() (*AccessTokenResponse, error) {
 		SetHeader("Content-Type", "application/x-www-form-urlencoded").
 		SetFormData(map[string]string{
 			"grant_type": "client_credentials",
-			"scope":      "",
+			"scope":      "pos.stores:read",
 		}).
 		Post(url)
 
@@ -71,11 +71,6 @@ func GetAccessToken() (string, error) {
 	}
 
 	token = newToken.AccessToken
-
-	err = SaveToEnv("ACCESS_TOKEN", token)
-	if err != nil {
-		return "", fmt.Errorf("error saving token to .env file: %w", err)
-	}
 
 	return token, nil
 }
