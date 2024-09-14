@@ -1,4 +1,4 @@
-package main
+package sumaregi
 
 // sumaregi scopes
 const (
