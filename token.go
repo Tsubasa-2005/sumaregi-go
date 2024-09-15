@@ -7,7 +7,6 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"os"
 	"strings"
 )
 
@@ -18,9 +17,9 @@ type AccessTokenResponse struct {
 	AccessToken string `json:"access_token"`
 }
 
-func getAccessToken(scopes []string) (string, error) {
-	requestURL := fmt.Sprintf("%s/app/%s/token", os.Getenv("SMAREGI_IDP_HOST"), os.Getenv("SMAREGI_SANDBOX_CONTRACT_ID"))
-	auth := base64.StdEncoding.EncodeToString([]byte(fmt.Sprintf("%s:%s", os.Getenv("SMAREGI_CLIENT_ID"), os.Getenv("SMAREGI_CLIENT_SECRET"))))
+func getAccessToken(scopes []string, envVari EnvironmentVariable) (string, error) {
+	requestURL := fmt.Sprintf("%s/app/%s/token", envVari.SmaregiIDPHost, envVari.SmaregiContractID)
+	auth := base64.StdEncoding.EncodeToString([]byte(fmt.Sprintf("%s:%s", envVari.SmaregiClientID, envVari.SmaregiClientSecret)))
 
 	formData := url.Values{}
 	formData.Set("grant_type", "client_credentials")

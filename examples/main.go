@@ -4,16 +4,16 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"os"
 
 	"github.com/Tsubasa-2005/sumaregi-go"
 )
 
 func main() {
-	sumaregi.LoadEnv()
-	config := sumaregi.NewConfig(os.Getenv("SMAREGI_API_HOST"), os.Getenv("SMAREGI_SANDBOX_CONTRACT_ID"))
+	development := false
+	envVari := sumaregi.LoadEnv(development)
+	config := sumaregi.NewConfig(envVari.SmaregiAPIHost, envVari.SmaregiContractID)
 	scopes := []string{sumaregi.ProductsRead, sumaregi.ProductsWrite}
-	client, err := sumaregi.NewClient(config, scopes)
+	client, err := sumaregi.NewClient(config, scopes, envVari)
 	if err != nil {
 		log.Fatalf("Failed to create client: %v", err)
 	}

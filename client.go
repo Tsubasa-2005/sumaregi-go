@@ -21,8 +21,8 @@ const (
 	APIPathPos = "/pos"
 )
 
-func NewClient(config *Config, scopes []string) (*Client, error) {
-	token, err := getAccessToken(scopes)
+func NewClient(config *Config, scopes []string, envVari EnvironmentVariable) (*Client, error) {
+	token, err := getAccessToken(scopes, envVari)
 	if err != nil {
 		return nil, err
 	}
