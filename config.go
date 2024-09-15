@@ -7,9 +7,9 @@ type Config struct {
 	ContractID  string
 }
 
-func NewConfig(APIEndpoint, contractID string) *Config {
+func NewConfig(envVari EnvironmentVariable) *Config {
 	return &Config{
-		APIEndpoint: APIEndpoint,
-		ContractID:  contractID,
+		APIEndpoint: envVari.SmaregiAPIHost,
+		ContractID:  envVari.SmaregiContractID,
 	}
 }

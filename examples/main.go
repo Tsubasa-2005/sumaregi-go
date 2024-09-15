@@ -17,7 +17,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to load environment variables: %v", err)
 	}
-	config := sumaregi.NewConfig(envVari.SmaregiAPIHost, envVari.SmaregiContractID)
+	config := sumaregi.NewConfig(envVari)
 	scopes := []string{sumaregi.TransactionsRead}
 	client, err := sumaregi.NewClient(config, scopes, envVari)
 	if err != nil {
@@ -32,6 +32,7 @@ func main() {
 	transactions, err := client.GetTransactions(ctx, types.GetTransactionsOpts{
 		TransactionDateTimeFrom: domain.FormatToISO8601(transactionDateTimeFrom),
 		TransactionDateTimeTo:   domain.FormatToISO8601(transactionDateTimeTo),
+		Limit:                   1,
 	})
 	if err != nil {
 		log.Fatalf("Failed to get products: %v", err)
