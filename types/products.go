@@ -139,38 +139,38 @@ type PostProductsResponse struct {
 }
 
 type GetProductsOpts struct {
-	Fields                      []string  `json:"fields"`
-	Sort                        string    `json:"sort"`
-	Limit                       int       `json:"limit"`
-	Page                        int       `json:"page"`
-	TransactionHeadIDFrom       string    `json:"transaction_head_id-from"`
-	TransactionHeadIDTo         string    `json:"transaction_head_id-to"`
-	TransactionDateTimeFrom     time.Time `json:"transaction_date_time-from"`
-	TransactionDateTimeTo       time.Time `json:"transaction_date_time-to"`
-	TransactionHeadDivision     int       `json:"transaction_head_division"`
-	StoreID                     int       `json:"store_id"`
-	TerminalTranDateTimeFrom    time.Time `json:"terminal_tran_date_time-from"`
-	TerminalTranDateTimeTo      time.Time `json:"terminal_tran_date_time-to"`
-	AdjustmentDateTime          time.Time `json:"adjustment_date_time"`
-	SumDate                     time.Time `json:"sum_date"`
-	SumDateFrom                 time.Time `json:"sum_date-from"`
-	SumDateTo                   time.Time `json:"sum_date-to"`
-	CustomerCode                string    `json:"customer_code"`
-	TransactionUUID             string    `json:"transaction_uuid"`
-	Barcode                     string    `json:"barcode"`
-	UpdDateTimeFrom             time.Time `json:"upd_date_time-from"`
-	UpdDateTimeTo               time.Time `json:"upd_date_time-to"`
-	WithDetails                 string    `json:"with_details"`
-	WithDepositOthers           string    `json:"with_deposit_others"`
-	WithLayaway                 string    `json:"with_layaway"`
-	WithLayaways                string    `json:"with_layaways"`
-	WithLayawayPickUp           string    `json:"with_layaway_pick_up"`
-	WithLayawayPickUps          string    `json:"with_layaway_pick_ups"`
-	WithMoneyControl            string    `json:"with_money_control"`
-	WithDetailProductAttributes string    `json:"with_detail_product_attributes"`
+	Fields                      []string   `url:"fields,omitempty"`
+	Sort                        string     `url:"sort,omitempty"`
+	Limit                       int        `url:"limit,omitempty"`
+	Page                        int        `url:"page,omitempty"`
+	TransactionHeadIDFrom       string     `url:"transaction_head_id-from,omitempty"`
+	TransactionHeadIDTo         string     `url:"transaction_head_id-to,omitempty"`
+	TransactionDateTimeFrom     *time.Time `url:"transaction_date_time-from,omitempty"`
+	TransactionDateTimeTo       *time.Time `url:"transaction_date_time-to,omitempty"`
+	TransactionHeadDivision     int        `url:"transaction_head_division,omitempty"`
+	StoreID                     int        `url:"store_id,omitempty"`
+	TerminalTranDateTimeFrom    *time.Time `url:"terminal_tran_date_time-from,omitempty"`
+	TerminalTranDateTimeTo      *time.Time `url:"terminal_tran_date_time-to,omitempty"`
+	AdjustmentDateTime          *time.Time `url:"adjustment_date_time,omitempty"`
+	SumDate                     *time.Time `url:"sum_date,omitempty"`
+	SumDateFrom                 *time.Time `url:"sum_date-from,omitempty"`
+	SumDateTo                   *time.Time `url:"sum_date-to,omitempty"`
+	CustomerCode                string     `url:"customer_code,omitempty"`
+	TransactionUUID             string     `url:"transaction_uuid,omitempty"`
+	Barcode                     string     `url:"barcode,omitempty"`
+	UpdDateTimeFrom             *time.Time `url:"upd_date_time-from,omitempty"`
+	UpdDateTimeTo               *time.Time `url:"upd_date_time-to,omitempty"`
+	WithDetails                 string     `url:"with_details,omitempty"`
+	WithDepositOthers           string     `url:"with_deposit_others,omitempty"`
+	WithLayaway                 string     `url:"with_layaway,omitempty"`
+	WithLayaways                string     `url:"with_layaways,omitempty"`
+	WithLayawayPickUp           string     `url:"with_layaway_pick_up,omitempty"`
+	WithLayawayPickUps          string     `url:"with_layaway_pick_ups,omitempty"`
+	WithMoneyControl            string     `url:"with_money_control,omitempty"`
+	WithDetailProductAttributes string     `url:"with_detail_product_attributes,omitempty"`
 }
 
-type PostProductsOpts struct {
+type PostProductsParams struct {
 	CategoryID              string `json:"categoryId"`
 	ProductCode             string `json:"productCode"`
 	ProductName             string `json:"productName"`
