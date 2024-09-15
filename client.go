@@ -73,7 +73,6 @@ func (c *Client) newRequest(
 		return nil, err
 	}
 	u.Path = path.Join(u.Path, c.config.ContractID, APIPathPos, apiPath)
-	fmt.Print(u.Path)
 	u.RawQuery = queryParams.Encode()
 	// request with context
 	req, err := http.NewRequest(method, u.String(), body)
@@ -81,6 +80,7 @@ func (c *Client) newRequest(
 		return nil, err
 	}
 	req = req.WithContext(ctx)
+	fmt.Print(u.String())
 	// set http headers
 	if contentType != "" {
 		req.Header.Set("Content-Type", contentType)
