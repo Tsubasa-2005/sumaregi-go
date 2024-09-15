@@ -1,7 +1,6 @@
 package sumaregi
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -16,11 +15,11 @@ type EnvironmentVariable struct {
 }
 
 // LoadEnv loads environment variables from .env file.
-func LoadEnv(development bool) EnvironmentVariable {
+func LoadEnv(development bool) (EnvironmentVariable, error) {
 	envVari := EnvironmentVariable{}
 	err := godotenv.Load()
 	if err != nil {
-		fmt.Println("Error loading .env file")
+		return EnvironmentVariable{}, err
 	}
 
 	if development {
@@ -37,5 +36,5 @@ func LoadEnv(development bool) EnvironmentVariable {
 		envVari.SmaregiContractID = os.Getenv("SMAREGI_SANDBOX_CONTRACT_ID")
 	}
 
-	return envVari
+	return envVari, nil
 }
