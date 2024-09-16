@@ -1,5 +1,6 @@
-package types
+package sumaregi
 
+// GetTransactionsOpts represents options for GetTransactions.
 type GetTransactionsOpts struct {
 	Fields                      []string `url:"fields,omitempty"`
 	Sort                        string   `url:"sort,omitempty"`
@@ -32,6 +33,7 @@ type GetTransactionsOpts struct {
 	WithDetailProductAttributes string   `url:"with_detail_product_attributes,omitempty"`
 }
 
+// GetTransactionsResponse represents a response from GetTransactions.
 type GetTransactionsResponse []struct {
 	TransactionHeadID              string `json:"transactionHeadId"`
 	TransactionDateTime            string `json:"transactionDateTime"`
@@ -276,4 +278,101 @@ type GetTransactionsResponse []struct {
 		AttributeDivision     string `json:"attributeDivision"`
 		AttributeDivisionName string `json:"attributeDivisionName"`
 	} `json:"moneyControl"`
+}
+
+// GetTransactionDetailOpts represents options for GetTransactionDetail.
+type GetTransactionDetailOpts struct {
+	Fields                      []string `url:"fields,omitempty"`                         // Array of fields (comma-separated)
+	Sort                        string   `url:"sort,omitempty"`                           // Sort order (comma-separated)
+	Limit                       int      `url:"limit,omitempty"`                          // Maximum number of results
+	Page                        int      `url:"page,omitempty"`                           // Page number
+	WithDiscounts               string   `url:"with_discounts,omitempty"`                 // Add discount information ("all" or "none")
+	WithDetailProductAttributes string   `url:"with_detail_product_attributes,omitempty"` // Add product attribute information ("all" or "none")
+}
+
+// GetTransactionDetailResponse represents a response from GetTransactionDetail.
+type GetTransactionDetailResponse []struct {
+	TransactionHeadID            string `json:"transactionHeadId"`
+	TransactionDetailID          string `json:"transactionDetailId"`
+	ParentTransactionDetailID    string `json:"parentTransactionDetailId"`
+	TransactionDetailDivision    string `json:"transactionDetailDivision"`
+	ProductID                    string `json:"productId"`
+	ProductCode                  string `json:"productCode"`
+	ProductName                  string `json:"productName"`
+	PrintReceiptProductName      string `json:"printReceiptProductName"`
+	Color                        string `json:"color"`
+	Size                         string `json:"size"`
+	GroupCode                    string `json:"groupCode"`
+	TaxDivision                  string `json:"taxDivision"`
+	Price                        string `json:"price"`
+	SalesPrice                   string `json:"salesPrice"`
+	UnitDiscountPrice            string `json:"unitDiscountPrice"`
+	UnitDiscountRate             string `json:"unitDiscountRate"`
+	UnitDiscountDivision         string `json:"unitDiscountDivision"`
+	Cost                         string `json:"cost"`
+	Quantity                     string `json:"quantity"`
+	UnitNonDiscountSum           string `json:"unitNonDiscountSum"`
+	UnitDiscountSum              string `json:"unitDiscountSum"`
+	UnitDiscountedSum            string `json:"unitDiscountedSum"`
+	CostSum                      string `json:"costSum"`
+	CategoryID                   string `json:"categoryId"`
+	CategoryName                 string `json:"categoryName"`
+	DiscriminationNo             string `json:"discriminationNo"`
+	SalesDivision                string `json:"salesDivision"`
+	ProductDivision              string `json:"productDivision"`
+	InventoryReservationDivision string `json:"inventoryReservationDivision"`
+	PointNotApplicable           string `json:"pointNotApplicable"`
+	CalcDiscount                 string `json:"calcDiscount"`
+	TaxFreeDivision              string `json:"taxFreeDivision"`
+	TaxFreeCommodityPrice        string `json:"taxFreeCommodityPrice"`
+	TaxFree                      string `json:"taxFree"`
+	ProductBundleGroupID         string `json:"productBundleGroupId"`
+	DiscountPriceProportional    string `json:"discountPriceProportional"`
+	DiscountPointProportional    string `json:"discountPointProportional"`
+	DiscountCouponProportional   string `json:"discountCouponProportional"`
+	TaxIncludeProportional       string `json:"taxIncludeProportional"`
+	TaxExcludeProportional       string `json:"taxExcludeProportional"`
+	ProductBundleProportional    string `json:"productBundleProportional"`
+	StaffDiscountProportional    string `json:"staffDiscountProportional"`
+	BargainDiscountProportional  string `json:"bargainDiscountProportional"`
+	RoundingPriceProportional    string `json:"roundingPriceProportional"`
+	ProductStaffDiscountRate     string `json:"productStaffDiscountRate"`
+	StaffRank                    string `json:"staffRank"`
+	StaffRankName                string `json:"staffRankName"`
+	StaffDiscountRate            string `json:"staffDiscountRate"`
+	StaffDiscountDivision        string `json:"staffDiscountDivision"`
+	ApplyStaffDiscountRate       string `json:"applyStaffDiscountRate"`
+	ApplyStaffDiscountPrice      string `json:"applyStaffDiscountPrice"`
+	BargainID                    string `json:"bargainId"`
+	BargainName                  string `json:"bargainName"`
+	BargainDivision              string `json:"bargainDivision"`
+	BargainValue                 string `json:"bargainValue"`
+	ApplyBargainValue            string `json:"applyBargainValue"`
+	ApplyBargainDiscountPrice    string `json:"applyBargainDiscountPrice"`
+	TaxRate                      string `json:"taxRate"`
+	StandardTaxRate              string `json:"standardTaxRate"`
+	ModifiedTaxRate              string `json:"modifiedTaxRate"`
+	ReduceTaxID                  string `json:"reduceTaxId"`
+	ReduceTaxName                string `json:"reduceTaxName"`
+	ReduceTaxRate                string `json:"reduceTaxRate"`
+	ReduceTaxPrice               string `json:"reduceTaxPrice"`
+	ReduceTaxMemberPrice         string `json:"reduceTaxMemberPrice"`
+	Memo                         string `json:"memo"`
+	Discounts                    []struct {
+		TransactionHeadID           string `json:"transactionHeadId"`
+		TransactionDetailID         string `json:"transactionDetailId"`
+		TransactionDiscountDivision string `json:"transactionDiscountDivision"`
+		DiscountDivision            string `json:"discountDivision"`
+		DiscountDivisionName        string `json:"discountDivisionName"`
+		AwardType                   string `json:"awardType"`
+		AwardValue                  string `json:"awardValue"`
+		DiscountPrice               string `json:"discountPrice"`
+	} `json:"discounts"`
+	ProductAttributes []struct {
+		TransactionHeadID   string `json:"transactionHeadId"`
+		TransactionDetailID string `json:"transactionDetailId"`
+		Code                string `json:"code"`
+		Name                string `json:"name"`
+	} `json:"productAttributes"`
+	RfidTags []string `json:"rfidTags"`
 }

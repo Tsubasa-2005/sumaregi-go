@@ -8,8 +8,6 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
-
-	"github.com/Tsubasa-2005/sumaregi-go/utils"
 )
 
 type AccessTokenResponse struct {
@@ -25,7 +23,7 @@ func getAccessToken(scopes []string, envVari EnvironmentVariable) (string, error
 
 	formData := url.Values{}
 	formData.Set("grant_type", "client_credentials")
-	formData.Set("scope", utils.JoinScopes(scopes))
+	formData.Set("scope", JoinScopes(scopes))
 
 	req, err := http.NewRequest("POST", requestURL, strings.NewReader(formData.Encode()))
 	if err != nil {

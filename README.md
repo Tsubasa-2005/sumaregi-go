@@ -13,9 +13,6 @@ import (
 	"time"
 
 	"github.com/Tsubasa-2005/sumaregi-go"
-	"github.com/Tsubasa-2005/sumaregi-go/domain"
-	"github.com/Tsubasa-2005/sumaregi-go/types"
-	"github.com/Tsubasa-2005/sumaregi-go/utils"
 )
 
 func main() {
@@ -36,25 +33,26 @@ func main() {
 	transactionDateTimeFrom := now.AddDate(0, 0, -2)
 	transactionDateTimeTo := now.AddDate(0, 0, -1)
 
-	transactions, err := client.GetTransactions(ctx, types.GetTransactionsOpts{
-		TransactionDateTimeFrom: domain.FormatToISO8601(transactionDateTimeFrom),
-		TransactionDateTimeTo:   domain.FormatToISO8601(transactionDateTimeTo),
+	transactions, err := client.GetTransactions(ctx, sumaregi.GetTransactionsOpts{
+		TransactionDateTimeFrom: sumaregi.FormatToISO8601(transactionDateTimeFrom),
+		TransactionDateTimeTo:   sumaregi.FormatToISO8601(transactionDateTimeTo),
 		Limit:                   2,
 	})
 	if err != nil {
 		log.Fatalf("Failed to get products: %v", err)
 	}
 
-	utils.PrintResponse(*transactions)
+	sumaregi.PrintResponse(*transactions)
 	for _, transaction := range *transactions {
-		transactionDetail, err := client.GetTransactionDetail(ctx, types.GetTransactionDetailOpts{}, transaction.TransactionHeadID)
+		transactionDetail, err := client.GetTransactionDetail(ctx, sumaregi.GetTransactionDetailOpts{}, transaction.TransactionHeadID)
 		if err != nil {
 			log.Printf("Failed to get transaction details for ID %s: %v", transaction.TransactionHeadID, err)
 			break
 		}
-		utils.PrintResponse(*transactionDetail)
+		sumaregi.PrintResponse(*transactionDetail)
 	}
 }
+
 
 ```
 

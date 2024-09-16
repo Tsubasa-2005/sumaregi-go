@@ -4,7 +4,6 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/Tsubasa-2005/sumaregi-go/types"
 	"github.com/google/go-querystring/query"
 )
 
@@ -12,8 +11,8 @@ const (
 	APIPathProducts = "products"
 )
 
-func (c *Client) GetProducts(ctx context.Context, opts types.GetProductsOpts) (*types.GetProductsResponse, error) {
-	var result types.GetProductsResponse
+func (c *Client) GetProducts(ctx context.Context, opts GetProductsOpts) (*GetProductsResponse, error) {
+	var result GetProductsResponse
 
 	v, err := query.Values(opts)
 	if err != nil {
@@ -27,8 +26,8 @@ func (c *Client) GetProducts(ctx context.Context, opts types.GetProductsOpts) (*
 	return &result, nil
 }
 
-func (c *Client) PostProducts(ctx context.Context, params types.PostProductsParams) (*types.PostProductsResponse, error) {
-	var result types.PostProductsResponse
+func (c *Client) PostProducts(ctx context.Context, params PostProductsParams) (*PostProductsResponse, error) {
+	var result PostProductsResponse
 
 	err := c.call(ctx, APIPathProducts, http.MethodPost, nil, params, &result)
 	if err != nil {
