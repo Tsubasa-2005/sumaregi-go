@@ -10,7 +10,7 @@ import (
 
 func main() {
 	development := false
-	envVari, err := sumaregi.LoadEnv(development)
+	envVari, err := LoadEnv(development)
 	if err != nil {
 		log.Fatalf("Failed to load environment variables: %v", err)
 	}
@@ -23,13 +23,12 @@ func main() {
 
 	ctx := context.Background()
 	now := time.Now()
-	transactionDateTimeFrom := now.AddDate(0, 0, -2)
+	transactionDateTimeFrom := now.AddDate(0, 0, -30)
 	transactionDateTimeTo := now.AddDate(0, 0, -1)
 
 	transactions, err := client.GetTransactions(ctx, sumaregi.GetTransactionsOpts{
 		TransactionDateTimeFrom: sumaregi.FormatToISO8601(transactionDateTimeFrom),
 		TransactionDateTimeTo:   sumaregi.FormatToISO8601(transactionDateTimeTo),
-		Limit:                   2,
 	})
 	if err != nil {
 		log.Fatalf("Failed to get products: %v", err)

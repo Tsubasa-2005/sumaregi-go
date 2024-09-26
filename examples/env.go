@@ -1,25 +1,18 @@
-package sumaregi
+package main
 
 import (
 	"os"
 
+	"github.com/Tsubasa-2005/sumaregi-go"
 	"github.com/joho/godotenv"
 )
 
-type EnvironmentVariable struct {
-	SmaregiClientID     string
-	SmaregiClientSecret string
-	SmaregiIDPHost      string
-	SmaregiAPIHost      string
-	SmaregiContractID   string
-}
-
 // LoadEnv loads environment variables from .env file.
-func LoadEnv(development bool) (EnvironmentVariable, error) {
-	envVari := EnvironmentVariable{}
+func LoadEnv(development bool) (sumaregi.EnvironmentVariable, error) {
+	envVari := sumaregi.EnvironmentVariable{}
 	err := godotenv.Load()
 	if err != nil {
-		return EnvironmentVariable{}, err
+		return sumaregi.EnvironmentVariable{}, err
 	}
 
 	if development {
