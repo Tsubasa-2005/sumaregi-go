@@ -8,6 +8,10 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
+const (
+	APIPathStores = "stores"
+)
+
 func (c *Client) GetStoresID(ctx context.Context, opts GetStoresIDOpts, id string) (*GetStoresIDResponse, error) {
 	var result GetStoresIDResponse
 
@@ -15,7 +19,7 @@ func (c *Client) GetStoresID(ctx context.Context, opts GetStoresIDOpts, id strin
 	if err != nil {
 		return nil, err
 	}
-	err = c.call(ctx, path.Join(APIPathProducts, "stores", id), http.MethodGet, v, nil, &result)
+	err = c.call(ctx, path.Join(APIPathStores, id), http.MethodGet, v, nil, &result)
 	if err != nil {
 		return nil, err
 	}
