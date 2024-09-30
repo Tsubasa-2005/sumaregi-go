@@ -1,9 +1,5 @@
 package sumaregi
 
-import (
-	"time"
-)
-
 type GetProductsResponse []struct {
 	ProductID               string `json:"productId"`
 	CategoryID              string `json:"categoryId"`
@@ -139,35 +135,20 @@ type PostProductsResponse struct {
 }
 
 type GetProductsOpts struct {
-	Fields                      []string   `url:"fields,omitempty"`
-	Sort                        string     `url:"sort,omitempty"`
-	Limit                       int        `url:"limit,omitempty"`
-	Page                        int        `url:"page,omitempty"`
-	TransactionHeadIDFrom       string     `url:"transaction_head_id-from,omitempty"`
-	TransactionHeadIDTo         string     `url:"transaction_head_id-to,omitempty"`
-	TransactionDateTimeFrom     *time.Time `url:"transaction_date_time-from,omitempty"`
-	TransactionDateTimeTo       *time.Time `url:"transaction_date_time-to,omitempty"`
-	TransactionHeadDivision     int        `url:"transaction_head_division,omitempty"`
-	StoreID                     int        `url:"store_id,omitempty"`
-	TerminalTranDateTimeFrom    *time.Time `url:"terminal_tran_date_time-from,omitempty"`
-	TerminalTranDateTimeTo      *time.Time `url:"terminal_tran_date_time-to,omitempty"`
-	AdjustmentDateTime          *time.Time `url:"adjustment_date_time,omitempty"`
-	SumDate                     *time.Time `url:"sum_date,omitempty"`
-	SumDateFrom                 *time.Time `url:"sum_date-from,omitempty"`
-	SumDateTo                   *time.Time `url:"sum_date-to,omitempty"`
-	CustomerCode                string     `url:"customer_code,omitempty"`
-	TransactionUUID             string     `url:"transaction_uuid,omitempty"`
-	Barcode                     string     `url:"barcode,omitempty"`
-	UpdDateTimeFrom             *time.Time `url:"upd_date_time-from,omitempty"`
-	UpdDateTimeTo               *time.Time `url:"upd_date_time-to,omitempty"`
-	WithDetails                 string     `url:"with_details,omitempty"`
-	WithDepositOthers           string     `url:"with_deposit_others,omitempty"`
-	WithLayaway                 string     `url:"with_layaway,omitempty"`
-	WithLayaways                string     `url:"with_layaways,omitempty"`
-	WithLayawayPickUp           string     `url:"with_layaway_pick_up,omitempty"`
-	WithLayawayPickUps          string     `url:"with_layaway_pick_ups,omitempty"`
-	WithMoneyControl            string     `url:"with_money_control,omitempty"`
-	WithDetailProductAttributes string     `url:"with_detail_product_attributes,omitempty"`
+	Fields               []string `url:"fields,omitempty"`
+	Sort                 string   `url:"sort,omitempty"`
+	Limit                int      `url:"limit,omitempty"`
+	Page                 int      `url:"page,omitempty"`
+	CategoryID           int      `url:"category_id,omitempty"`
+	ProductCode          string   `url:"product_code,omitempty"`
+	GroupCode            string   `url:"group_code,omitempty"`
+	DisplayFlag          string   `url:"display_flag,omitempty"`           // Enum: 0 1 (0: 表示しない, 1: 表示する)
+	Division             string   `url:"division,omitempty"`               // Enum: 0 1 2 (0: 通常商品, 1: 回数券, 2: オプション商品)
+	SalesDivision        string   `url:"sales_division,omitempty"`         // Enum: 0 1 (0: 売上対象, 1: 売上対象外)
+	StockControlDivision string   `url:"stock_control_division,omitempty"` // Enum: 0 1 (0: 在庫管理対象, 1: 在庫管理対象外)
+	SupplierProductNo    string   `url:"supplier_product_no,omitempty"`
+	UpdDateTimeFrom      string   `url:"upd_date_time-from,omitempty"`
+	UpdDateTimeTo        string   `url:"upd_date_time-to,omitempty"`
 }
 
 type PostProductsParams struct {
