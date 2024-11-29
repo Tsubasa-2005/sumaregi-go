@@ -8,10 +8,6 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
-const (
-	APIPathTransactions = "transactions"
-)
-
 // GetTransactions retrieves transaction using the GET /transactions endpoint.
 // See Smaregi API documentation for details:
 // https://www1.smaregi.dev/apidoc/#operation/getTransaction

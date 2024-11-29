@@ -7,10 +7,6 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
-const (
-	APIPathStock = "stock"
-)
-
 // GetStock retrieves stock information using the GET /stock endpoint.
 // See Smaregi API documentation for details:
 // https://www1.smaregi.dev/apidoc/#operation/getStocks

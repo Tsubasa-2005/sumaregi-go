@@ -7,10 +7,6 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
-const (
-	APIPathProducts = "products"
-)
-
 // GetProducts retrieves a list of products using the GET /products endpoint.
 // See Smaregi API documentation for details:
 // https://www1.smaregi.dev/apidoc/#operation/getItem
