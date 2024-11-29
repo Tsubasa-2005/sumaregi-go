@@ -11,6 +11,9 @@ const (
 	APIPathStock = "stock"
 )
 
+// GetStock retrieves stock information using the GET /stock endpoint.
+// See Smaregi API documentation for details:
+// https://www1.smaregi.dev/apidoc/#operation/getStocks
 func (c *Client) GetStock(ctx context.Context, opts GetStockOpts) (*GetStockResponse, error) {
 	var result GetStockResponse
 

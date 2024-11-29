@@ -11,6 +11,9 @@ const (
 	APIPathProducts = "products"
 )
 
+// GetProducts retrieves a list of products using the GET /products endpoint.
+// See Smaregi API documentation for details:
+// https://www1.smaregi.dev/apidoc/#operation/getItem
 func (c *Client) GetProducts(ctx context.Context, opts GetProductsOpts) (*GetProductsResponse, error) {
 	var result GetProductsResponse
 
@@ -26,6 +29,9 @@ func (c *Client) GetProducts(ctx context.Context, opts GetProductsOpts) (*GetPro
 	return &result, nil
 }
 
+// PostProducts creates products using the POST /products endpoint.
+// See Smaregi API documentation for details:
+// https://www1.smaregi.dev/apidoc/#operation/create
 func (c *Client) PostProducts(ctx context.Context, params PostProductsParams) (*PostProductsResponse, error) {
 	var result PostProductsResponse
 

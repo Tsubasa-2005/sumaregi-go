@@ -12,6 +12,9 @@ const (
 	APIPathStores = "stores"
 )
 
+// GetStoresID retrieves details for a specific store using the GET /stores/{id} endpoint.
+// See Smaregi API documentation for details:
+// https://www1.smaregi.dev/apidoc/#operation/getStoresId
 func (c *Client) GetStoresID(ctx context.Context, opts GetStoresIDOpts, id string) (*GetStoresIDResponse, error) {
 	var result GetStoresIDResponse
 
