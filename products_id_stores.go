@@ -12,8 +12,8 @@ import (
 // using the GET /products/{id}/stores endpoint.
 // See Smaregi API documentation for details:
 // https://www1.smaregi.dev/apidoc/#operation/getProductStores
-func (c *Client) GetProductsIDStores(ctx context.Context, opts GetProductsIDOpts, id string) (*GetProductsIDResponse, error) {
-	var result GetProductsIDResponse
+func (c *Client) GetProductsIDStores(ctx context.Context, opts GetProductIDStoresOpts, id string) (*GetProductIDStoresResponse, error) {
+	var result GetProductIDStoresResponse
 
 	v, err := query.Values(opts)
 	if err != nil {

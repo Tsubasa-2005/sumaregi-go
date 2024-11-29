@@ -1,12 +1,12 @@
 package sumaregi
 
-type GetProductsIDResponse []struct {
+type GetProductIDStoresResponse []struct {
 	ProductID      string `json:"productId"`
 	StoreID        string `json:"storeId"`
 	AssignDivision string `json:"assignDivision"`
 }
 
-type GetProductsIDOpts struct {
+type GetProductIDStoresOpts struct {
 	Fields                      string `url:"fields,omitempty"`
 	Sort                        string `url:"sort,omitempty"`
 	Limit                       int    `url:"limit,omitempty"`
