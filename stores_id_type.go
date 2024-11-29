@@ -73,7 +73,7 @@ type GetStoresIDResponse struct {
 }
 
 type GetStoresIDOpts struct {
-	Fields               []string `url:"fields,omitempty"`
-	WithPointCondition   string   `url:"with_point_condition,omitempty"`
-	WithReceiptPrintInfo string   `url:"with_receipt_print_info,omitempty"`
+	Fields               []string `url:"fields,omitempty"`                  // 検索パラメータ (カンマ区切りで指定可)。レスポンス項目を指定可能。一部ネスト項目は指定不可。
+	WithPointCondition   string   `url:"with_point_condition,omitempty"`    // ポイント情報を付加するか指定 (デフォルト: "none")。Enum: "all"=付加する, "none"=付加しない。
+	WithReceiptPrintInfo string   `url:"with_receipt_print_info,omitempty"` // レシート印刷情報を付加するか指定 (デフォルト: "none")。Enum: "all"=付加する, "none"=付加しない。
 }

@@ -2,35 +2,35 @@ package sumaregi
 
 // GetTransactionsOpts represents options for GetTransactions.
 type GetTransactionsOpts struct {
-	Fields                      []string `url:"fields,omitempty"`
-	Sort                        string   `url:"sort,omitempty"`
-	Limit                       int      `url:"limit,omitempty"`
-	Page                        int      `url:"page,omitempty"`
-	TransactionHeadIDFrom       string   `url:"transaction_head_id-from,omitempty"`
-	TransactionHeadIDTo         string   `url:"transaction_head_id-to,omitempty"`
-	TransactionDateTimeFrom     string   `url:"transaction_date_time-from,omitempty"`
-	TransactionDateTimeTo       string   `url:"transaction_date_time-to,omitempty"`
-	TransactionHeadDivision     string   `url:"transaction_head_division,omitempty"`
-	StoreID                     int      `url:"store_id,omitempty"`
-	TerminalTranDateTimeFrom    string   `url:"terminal_tran_date_time-from,omitempty"`
-	TerminalTranDateTimeTo      string   `url:"terminal_tran_date_time-to,omitempty"`
-	AdjustmentDateTime          string   `url:"adjustment_date_time,omitempty"`
-	SumDate                     string   `url:"sum_date,omitempty"`
-	SumDateFrom                 string   `url:"sum_date-from,omitempty"`
-	SumDateTo                   string   `url:"sum_date-to,omitempty"`
-	CustomerCode                string   `url:"customer_code,omitempty"`
-	TransactionUUID             string   `url:"transaction_uuid,omitempty"`
-	Barcode                     string   `url:"barcode,omitempty"`
-	UpdDateTimeFrom             string   `url:"upd_date_time-from,omitempty"`
-	UpdDateTimeTo               string   `url:"upd_date_time-to,omitempty"`
-	WithDetails                 string   `url:"with_details,omitempty"`
-	WithDepositOthers           string   `url:"with_deposit_others,omitempty"`
-	WithLayaway                 string   `url:"with_layaway,omitempty"`
-	WithLayaways                string   `url:"with_layaways,omitempty"`
-	WithLayawayPickUp           string   `url:"with_layaway_pick_up,omitempty"`
-	WithLayawayPickUps          string   `url:"with_layaway_pick_ups,omitempty"`
-	WithMoneyControl            string   `url:"with_money_control,omitempty"`
-	WithDetailProductAttributes string   `url:"with_detail_product_attributes,omitempty"`
+	Fields                      []string `url:"fields,omitempty"`                         // 検索パラメータ (カンマ区切り指定可)。レスポンス項目を指定可能。一部ネスト項目は指定不可。
+	Sort                        string   `url:"sort,omitempty"`                           // 並び順 (カンマ区切り指定可)。
+	Limit                       int      `url:"limit,omitempty"`                          // 最大取得件数。
+	Page                        int      `url:"page,omitempty"`                           // ページ番号 (ページネーション用)。
+	TransactionHeadIDFrom       string   `url:"transaction_head_id-from,omitempty"`       // 取引ID (From)。
+	TransactionHeadIDTo         string   `url:"transaction_head_id-to,omitempty"`         // 取引ID (To)。
+	TransactionDateTimeFrom     string   `url:"transaction_date_time-from,omitempty"`     // 取引日時 (From)。フォーマット: [YYYY-MM-DDThh:mm:ssTZD]。最大31日。
+	TransactionDateTimeTo       string   `url:"transaction_date_time-to,omitempty"`       // 取引日時 (To)。フォーマット: [YYYY-MM-DDThh:mm:ssTZD]。最大31日。
+	TransactionHeadDivision     string   `url:"transaction_head_division,omitempty"`      // 取引区分 (Enum: 1=通常, 2=入金, 3=出金, 4=預かり金, ... 16=領収証)。
+	StoreID                     int      `url:"store_id,omitempty"`                       // 店舗ID。
+	TerminalTranDateTimeFrom    string   `url:"terminal_tran_date_time-from,omitempty"`   // 端末取引日時 (From)。フォーマット: [YYYY-MM-DDThh:mm:ssTZD]。
+	TerminalTranDateTimeTo      string   `url:"terminal_tran_date_time-to,omitempty"`     // 端末取引日時 (To)。フォーマット: [YYYY-MM-DDThh:mm:ssTZD]。
+	AdjustmentDateTime          string   `url:"adjustment_date_time,omitempty"`           // 精算日時。フォーマット: [YYYY-MM-DDThh:mm:ssTZD]。
+	SumDate                     string   `url:"sum_date,omitempty"`                       // 締め日。フォーマット: [YYYY-MM-DD]。
+	SumDateFrom                 string   `url:"sum_date-from,omitempty"`                  // 締め日 (From)。フォーマット: [YYYY-MM-DD]。
+	SumDateTo                   string   `url:"sum_date-to,omitempty"`                    // 締め日 (To)。フォーマット: [YYYY-MM-DD]。
+	CustomerCode                string   `url:"customer_code,omitempty"`                  // 会員コード。
+	TransactionUUID             string   `url:"transaction_uuid,omitempty"`               // レシート番号 (完全一致)。
+	Barcode                     string   `url:"barcode,omitempty"`                        // バーコードでフィルタリング。
+	UpdDateTimeFrom             string   `url:"upd_date_time-from,omitempty"`             // 更新日時 (From)。フォーマット: [YYYY-MM-DDThh:mm:ssTZD]。最大31日。
+	UpdDateTimeTo               string   `url:"upd_date_time-to,omitempty"`               // 更新日時 (To)。フォーマット: [YYYY-MM-DDThh:mm:ssTZD]。最大31日。
+	WithDetails                 string   `url:"with_details,omitempty"`                   // 取引明細情報の付加設定 (Enum: "all"=全項目, "summary"=一部項目, "none"=付加しない)。
+	WithDepositOthers           string   `url:"with_deposit_others,omitempty"`            // その他支払い情報の付加設定 (Enum: "all"=付加する, "none"=付加しない)。
+	WithLayaway                 string   `url:"with_layaway,omitempty"`                   // (非推奨) 取置き情報の付加設定 (Enum: "all"=付加する, "none"=付加しない)。
+	WithLayaways                string   `url:"with_layaways,omitempty"`                  // 取置き情報の付加設定 (Enum: "all"=付加する, "none"=付加しない)。
+	WithLayawayPickUp           string   `url:"with_layaway_pick_up,omitempty"`           // (非推奨) 取置き引取情報の付加設定 (Enum: "all"=付加する, "none"=付加しない)。
+	WithLayawayPickUps          string   `url:"with_layaway_pick_ups,omitempty"`          // 取置き引取情報の付加設定 (Enum: "all"=付加する, "none"=付加しない)。
+	WithMoneyControl            string   `url:"with_money_control,omitempty"`             // 取引金操作情報の付加設定 (Enum: "all"=付加する, "none"=付加しない)。
+	WithDetailProductAttributes string   `url:"with_detail_product_attributes,omitempty"` // 販売時の商品属性情報の付加設定 (Enum: "all"=付加する, "none"=付加しない)。
 }
 
 // GetTransactionsResponse represents a response from GetTransactions.
@@ -282,12 +282,12 @@ type GetTransactionsResponse []struct {
 
 // GetTransactionDetailOpts represents options for GetTransactionDetail.
 type GetTransactionDetailOpts struct {
-	Fields                      []string `url:"fields,omitempty"`                         // Array of fields (comma-separated)
-	Sort                        string   `url:"sort,omitempty"`                           // Sort order (comma-separated)
-	Limit                       int      `url:"limit,omitempty"`                          // Maximum number of results
-	Page                        int      `url:"page,omitempty"`                           // Page number
-	WithDiscounts               string   `url:"with_discounts,omitempty"`                 // Add discount information ("all" or "none")
-	WithDetailProductAttributes string   `url:"with_detail_product_attributes,omitempty"` // Add product attribute information ("all" or "none")
+	Fields                      []string `url:"fields,omitempty"`                         // 検索パラメータ (カンマ区切り指定可)。レスポンス項目を指定可能。一部ネスト項目は指定不可。
+	Sort                        string   `url:"sort,omitempty"`                           // 並び順 (カンマ区切り指定可)。
+	Limit                       int      `url:"limit,omitempty"`                          // 最大取得件数。
+	Page                        int      `url:"page,omitempty"`                           // ページ番号 (ページネーション用)。
+	WithDiscounts               string   `url:"with_discounts,omitempty"`                 // 単品値引／割引情報の付加設定 (Enum: "all"=付加する, "none"=付加しない)。
+	WithDetailProductAttributes string   `url:"with_detail_product_attributes,omitempty"` // 商品属性情報の付加設定 (Enum: "all"=付加する, "none"=付加しない)。
 }
 
 // GetTransactionDetailResponse represents a response from GetTransactionDetail.

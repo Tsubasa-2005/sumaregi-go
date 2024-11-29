@@ -93,11 +93,11 @@ type GetProductResponse struct {
 }
 
 type GetProductOpt struct {
-	Fields                    []string `url:"fields,omitempty"`
-	WithPrices                string   `url:"with_prices,omitempty"`
-	WithReserveItems          string   `url:"with_reserve_items,omitempty"`
-	WithStores                string   `url:"with_stores,omitempty"`
-	WithInventoryReservations string   `url:"with_inventory_reservations,omitempty"`
-	WithAttributeItems        string   `url:"with_attribute_items,omitempty"`
-	WithOrderSetting          string   `url:"with_order_setting,omitempty"`
+	Fields                    []string `url:"fields,omitempty"`                      // 検索パラメータ - カンマ区切りで指定可能。Response項目を指定。※一部項目(with指定項目や2階層目以降の項目)は指定不可。
+	WithPrices                string   `url:"with_prices,omitempty"`                 // 商品価格情報の付加設定 - Enum: "all" (付加する), "none" (付加しない)。デフォルト: "none"。
+	WithReserveItems          string   `url:"with_reserve_items,omitempty"`          // 商品自由項目情報の付加設定 - Enum: "all" (付加する), "none" (付加しない)。デフォルト: "none"。
+	WithStores                string   `url:"with_stores,omitempty"`                 // 店舗情報の付加設定 - Enum: "all" (付加する), "none" (付加しない)。デフォルト: "none"。
+	WithInventoryReservations string   `url:"with_inventory_reservations,omitempty"` // 在庫引当情報の付加設定 - Enum: "all" (付加する), "none" (付加しない)。デフォルト: "none"。
+	WithAttributeItems        string   `url:"with_attribute_items,omitempty"`        // 商品属性項目情報の付加設定 - Enum: "all" (付加する), "none" (付加しない)。デフォルト: "none"。
+	WithOrderSetting          string   `url:"with_order_setting,omitempty"`          // 発注設定情報の付加設定 - Enum: "all" (付加する), "none" (付加しない)。デフォルト: "none"。
 }
