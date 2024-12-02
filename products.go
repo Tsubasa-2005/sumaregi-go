@@ -25,10 +25,10 @@ func (c *Client) GetProducts(ctx context.Context, opts GetProductsOpts) (*GetPro
 	return &result, nil
 }
 
-// PostProducts creates products using the POST /products endpoint.
+// PostProduct creates products using the POST /products endpoint.
 // See Smaregi API documentation for details:
 // https://www1.smaregi.dev/apidoc/#operation/create
-func (c *Client) PostProducts(ctx context.Context, params PostProductsParams) (*PostProductsResponse, error) {
+func (c *Client) PostProduct(ctx context.Context, params PostProductsParams) (*PostProductsResponse, error) {
 	var result PostProductsResponse
 
 	err := c.call(ctx, APIPathProducts, http.MethodPost, nil, params, &result)
