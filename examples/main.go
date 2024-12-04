@@ -9,8 +9,7 @@ import (
 )
 
 func main() {
-	development := false
-	envVari, err := LoadEnv(development)
+	envVari, err := sumaregi.LoadEnv(false)
 	if err != nil {
 		log.Fatalf("Failed to load environment variables: %v", err)
 	}
