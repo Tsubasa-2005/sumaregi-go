@@ -44,3 +44,18 @@ func (c *Client) GetTransactionDetail(ctx context.Context, opts GetTransactionDe
 
 	return &result, nil
 }
+
+// PostTransactionCSV request creation of a CSV file containing transaction details
+// using the POST /transactions/details/out_file_async endpoint.
+// See Smaregi API documentation for details:
+// https://www1.smaregi.dev/apidoc/#operation/postCreateTransactionDetailList
+func (c *Client) PostTransactionCSV(ctx context.Context, params PostTransactionCSVOpts) (*PostTransactionCSVResponse, error) {
+	var result PostTransactionCSVResponse
+
+	err := c.call(ctx, path.Join(APIPathTransactions, "details", "out_file_async"), http.MethodPost, nil, params, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}

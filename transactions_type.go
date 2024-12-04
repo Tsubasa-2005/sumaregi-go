@@ -33,6 +33,28 @@ type GetTransactionsOpts struct {
 	WithDetailProductAttributes string   `url:"with_detail_product_attributes,omitempty"` // 販売時の商品属性情報の付加設定 (Enum: "all"=付加する, "none"=付加しない)。
 }
 
+// PostTransactionCSVOpts represents the request structure for fetching transaction details.
+type PostTransactionCSVOpts struct {
+	Fields                   string `json:"fields,omitempty"`                   // 検索パラメータ (カンマ区切りで指定可)
+	Sort                     string `json:"sort,omitempty"`                     // 並び順 (カンマ区切りで指定可)
+	TransactionHeadIDFrom    string `json:"transactionHeadIdFrom,omitempty"`    // 取引ID(From)
+	TransactionHeadIDTo      string `json:"transactionHeadIdTo,omitempty"`      // 取引ID(To)
+	TransactionDateTimeFrom  string `json:"transactionDateTimeFrom"`            // 取引日時(From) (必須) [YYYY-MM-DDThh:mm:ssTZD]
+	TransactionDateTimeTo    string `json:"transactionDateTimeTo"`              // 取引日時(To) (必須) [YYYY-MM-DDThh:mm:ssTZD]
+	TransactionHeadDivision  int    `json:"transactionHeadDivision,omitempty"`  // 取引区分 (1:通常,10:取置き)
+	StoreID                  string `json:"storeId,omitempty"`                  // 店舗ID
+	TerminalTranDateTimeFrom string `json:"terminalTranDateTimeFrom,omitempty"` // 端末取引日時(From) [YYYY-MM-DDThh:mm:ssTZD]
+	TerminalTranDateTimeTo   string `json:"terminalTranDateTimeTo,omitempty"`   // 端末取引日時(To) [YYYY-MM-DDThh:mm:ssTZD]
+	SumDate                  string `json:"sumDate,omitempty"`                  // 締め日 [YYYY-MM-DD]
+	SumDateFrom              string `json:"sumDateFrom,omitempty"`              // 締め日(From) [YYYY-MM-DD]
+	SumDateTo                string `json:"sumDateTo,omitempty"`                // 締め日(To) [YYYY-MM-DD]
+	CustomerSaleDivision     int    `json:"customerSaleDivision,omitempty"`     // 会員販売区分 (0:非会員販売, 1:会員販売)
+	UpdDateTimeFrom          string `json:"updDateTimeFrom,omitempty"`          // 更新日時(From) [YYYY-MM-DDThh:mm:ssTZD]
+	UpdDateTimeTo            string `json:"updDateTimeTo,omitempty"`            // 更新日時(To) [YYYY-MM-DDThh:mm:ssTZD]
+	CallbackURL              string `json:"callbackUrl"`                        // 取引明細CSV作成完了通知URL (必須)
+	State                    string `json:"state,omitempty"`                    // 完了通知ステートメント (20文字以内の任意文字列)
+}
+
 // GetTransactionsResponse represents a response from GetTransactions.
 type GetTransactionsResponse []struct {
 	TransactionHeadID              string `json:"transactionHeadId"`
@@ -375,4 +397,10 @@ type GetTransactionDetailResponse []struct {
 		Name                string `json:"name"`
 	} `json:"productAttributes"`
 	RfidTags []string `json:"rfidTags"`
+}
+
+type PostTransactionCSVResponse struct {
+	CallbackURL string `json:"callbackUrl"`
+	State       string `json:"state"`
+	RequestCode string `json:"requestCode"`
 }
