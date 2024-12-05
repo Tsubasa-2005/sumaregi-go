@@ -8,7 +8,6 @@ import (
 	"time"
 
 	"github.com/Tsubasa-2005/sumaregi-go"
-	"github.com/Tsubasa-2005/sumaregi-go/domain"
 	"github.com/stretchr/testify/require"
 )
 
@@ -33,7 +32,7 @@ func TestClient_GetTransactionCSV(t *testing.T) {
 	transactionDateTimeTo := now.AddDate(0, 0, -1)
 
 	t.Run("success", func(t *testing.T) {
-		fields := domain.SelectFields(domain.ProductName, domain.ProductId, domain.Price, domain.Quantity)
+		fields := sumaregi.SelectFields(sumaregi.ProductName, sumaregi.ProductId, sumaregi.Price, sumaregi.Quantity)
 		csv, err := client.PostTransactionCSV(ctx, sumaregi.PostTransactionCSVOpts{
 			Fields:                  fields,
 			TransactionDateTimeFrom: transactionDateTimeFrom.Format("2006-01-02T15:04:05-07:00"),
