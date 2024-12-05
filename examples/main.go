@@ -26,8 +26,8 @@ func main() {
 	transactionDateTimeTo := now.AddDate(0, 0, -1)
 
 	transactions, err := client.GetTransactions(ctx, sumaregi.GetTransactionsOpts{
-		TransactionDateTimeFrom: sumaregi.FormatToISO8601(transactionDateTimeFrom),
-		TransactionDateTimeTo:   sumaregi.FormatToISO8601(transactionDateTimeTo),
+		TransactionDateTimeFrom: transactionDateTimeFrom.Format("2006-01-02T15:04:05-07:00"),
+		TransactionDateTimeTo:   transactionDateTimeTo.Format("2006-01-02T15:04:05-07:00"),
 	})
 	if err != nil {
 		log.Fatalf("Failed to get products: %v", err)
